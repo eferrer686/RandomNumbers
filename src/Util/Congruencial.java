@@ -8,6 +8,8 @@ public class Congruencial {
     int i;
 
     public ArrayList numerosGenerados;
+    public ArrayList normalizados = new ArrayList();
+    public ArrayList<Congruencial> congruenciales = new ArrayList<Congruencial>();
 
     public Congruencial() {
         i = 0;
@@ -80,6 +82,7 @@ public class Congruencial {
         for (int i  = 0; i<n ;i++){
             numerosGenerados.add(lineal());
         }
+        numerosNormalizados();
         return numerosGenerados;
     }
 
@@ -88,6 +91,49 @@ public class Congruencial {
         for (int i  = 0; i<n ;i++){
             numerosGenerados.add(multiplicativo());
         }
+        numerosNormalizados();
         return numerosGenerados;
+    }
+
+    public ArrayList numerosNormalizados(){
+        ArrayList normalizados = new ArrayList();
+        for (int i  = 0; i<numerosGenerados.size() ;i++){
+            normalizados.add((double)numerosGenerados.get(i)/m);
+        }
+        this.normalizados = normalizados;
+        return normalizados;
+    }
+
+    public void addCongruencial(int a,int m){
+        congruenciales.add(new Congruencial(0,a,m));
+    }
+
+    public ArrayList congruencialMixto(int n){
+
+        int sum = 0 ;
+        int xi = (congruenciales.get(i).m-1);
+
+        for (int i=0;i<n;i++){
+            for (int j = 1 ; j<=congruenciales.size(); j++){
+                congruenciales.get(j-1).x = xi;
+                sum +=  Math.pow(-1,j-1)*(int)congruenciales.get(j-1).multiplicativo();
+            }
+            xi = sum % (congruenciales.get(0).m-1);
+            numerosGenerados.add(xi);
+            normalizados.add((double)xi/congruenciales.get(0).m);
+            sum = 0;
+        }
+
+        return numerosGenerados;
+    }
+
+    public int lecuyer(){
+        int  p = 1;
+
+        for(int i =0; i<congruenciales.size();i++){
+            p*=congruenciales.get(i).m-1;
+        }
+        p = (int) (p/(Math.pow(2,(congruenciales.size()-1))));
+        return p;
     }
 }
