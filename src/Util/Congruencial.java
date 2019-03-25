@@ -51,9 +51,6 @@ public class Congruencial {
 
         int qaCheck = (a-1)%q;
 
-//        System.out.println("qmCheck : "+qmCheck);
-//        System.out.println("qaCheck : "+qaCheck);
-//        System.out.println("fourCheck : "+fourCheck);
 
         if (Math.gcd(c,m)==1 && qmCheck==0 && qaCheck==0 && fourCheck) {
             return true;
@@ -72,7 +69,7 @@ public class Congruencial {
             }
         }
 
-        System.out.println("Found q : "+i);
+        //System.out.println("Found q : "+i);
 
         return 0;
     }
@@ -108,13 +105,13 @@ public class Congruencial {
         congruenciales.add(new Congruencial(0,a,m));
     }
 
-    public ArrayList congruencialMixto(int n){
+    public ArrayList congruencialMixto(int xi,int n){
 
         int sum = 0 ;
-        int xi = (congruenciales.get(i).m-1);
 
         for (int i=0;i<n;i++){
             for (int j = 1 ; j<=congruenciales.size(); j++){
+
                 congruenciales.get(j-1).x = xi;
                 sum +=  Math.pow(-1,j-1)*(int)congruenciales.get(j-1).multiplicativo();
             }
