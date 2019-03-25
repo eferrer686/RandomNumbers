@@ -101,23 +101,22 @@ public class Congruencial {
         return normalizados;
     }
 
-    public void addCongruencial(int a,int m){
-        congruenciales.add(new Congruencial(0,a,m));
+    public void addCongruencial(int xi,int a,int m){
+        congruenciales.add(new Congruencial(xi,a,m));
     }
 
-    public ArrayList congruencialMixto(int xi,int n){
+    public ArrayList congruencialMixto(int n){
 
+        int gen = 0;
         int sum = 0 ;
 
         for (int i=0;i<n;i++){
             for (int j = 1 ; j<=congruenciales.size(); j++){
-
-                congruenciales.get(j-1).x = xi;
                 sum +=  Math.pow(-1,j-1)*(int)congruenciales.get(j-1).multiplicativo();
             }
-            xi = sum % (congruenciales.get(0).m-1);
-            numerosGenerados.add(xi);
-            normalizados.add((double)xi/congruenciales.get(0).m);
+            gen = sum % (congruenciales.get(0).m-1);
+            numerosGenerados.add(gen);
+            normalizados.add((double)gen/congruenciales.get(0).m);
             sum = 0;
         }
 

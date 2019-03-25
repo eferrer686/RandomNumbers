@@ -7,8 +7,8 @@ public class Main {
 
         Congruencial c = new Congruencial(1,7,12,11);
 
-        c.addCongruencial(10,11);
-        c.addCongruencial(9,13);
+        c.addCongruencial(40013,40014,2147483563);
+        c.addCongruencial(40691,40692,2147483399);
 
 
 //        System.out.println(c.hullDobel());
@@ -18,7 +18,7 @@ public class Main {
 
         System.out.println(c.lecuyer());
 
-        System.out.println(c.congruencialMixto(5,30));
+        System.out.println(c.congruencialMixto(30));
         System.out.println(c.normalizados);
 
 
